@@ -1,12 +1,12 @@
 /**
  * Variables Configuration
  * =======================
- * 
+ *
  * CENTRAL PLACE TO DEFINE ALL SHARED VARIABLES
- * 
+ *
  * This file defines all variables that can be shared across sections.
  * AI agents should read this file to understand what variables are available.
- * 
+ *
  * USAGE:
  * 1. Define variables here with their default values and metadata
  * 2. Use them in any section with: const x = useVar('variableName', defaultValue)
@@ -53,108 +53,253 @@ export interface VariableDefinition {
 
 /**
  * =====================================================
- * 🎯 DEFINE YOUR VARIABLES HERE
+ * 🎯 VECTOR LESSON VARIABLES
  * =====================================================
- * 
- * SUPPORTED TYPES:
- * 
- * 1. NUMBER (slider):
- *    { defaultValue: 5, type: 'number', min: 0, max: 10, step: 1 }
- * 
- * 2. TEXT (free text):
- *    { defaultValue: 'Hello', type: 'text', placeholder: 'Enter text...' }
- * 
- * 3. SELECT (dropdown):
- *    { defaultValue: 'sine', type: 'select', options: ['sine', 'cosine', 'tangent'] }
- * 
- * 4. BOOLEAN (toggle):
- *    { defaultValue: true, type: 'boolean' }
- * 
- * 5. ARRAY (list of numbers):
- *    { defaultValue: [1, 2, 3], type: 'array' }
- * 
- * 6. OBJECT (complex data):
- *    { defaultValue: { x: 5, y: 10 }, type: 'object', schema: '{ x: number, y: number }' }
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
-    // ========================================
-    // ADD YOUR VARIABLES HERE
-    // ========================================
-
-    // Uncomment and modify these examples for your lesson:
-
-    /*
     // ─────────────────────────────────────────
-    // NUMBER - Use with sliders
+    // SECTION 1: What is a Vector?
     // ─────────────────────────────────────────
-    myValue: {
+    scalarDistance: {
         defaultValue: 5,
         type: 'number',
-        label: 'My Value',
-        description: 'A number that controls something',
-        unit: 'm',           // optional unit display
-        min: 0,
+        label: 'Distance',
+        description: 'A scalar quantity representing distance only',
+        unit: 'km',
+        min: 1,
         max: 10,
-        step: 0.5,
+        step: 1,
+        color: '#F7B23B',
     },
-
-    // ─────────────────────────────────────────
-    // TEXT - Free text input
-    // ─────────────────────────────────────────
-    lessonTitle: {
-        defaultValue: 'My Lesson',
+    vectorAngle: {
+        defaultValue: 45,
+        type: 'number',
+        label: 'Direction Angle',
+        description: 'The angle of the vector direction in degrees',
+        unit: '°',
+        min: 0,
+        max: 360,
+        step: 15,
+        color: '#62D0AD',
+    },
+    vectorHighlight: {
+        defaultValue: '',
         type: 'text',
-        label: 'Lesson Title',
-        description: 'The title of your lesson',
-        placeholder: 'Enter a title...',
+        label: 'Vector Highlight',
+        description: 'Active highlight for vector visualization',
     },
 
     // ─────────────────────────────────────────
-    // SELECT - Dropdown with options
+    // SECTION 1: Assessment Questions
     // ─────────────────────────────────────────
-    difficulty: {
-        defaultValue: 'medium',
+    answerScalarVector: {
+        defaultValue: '',
         type: 'select',
-        label: 'Difficulty',
-        description: 'The difficulty level of the lesson',
-        options: ['easy', 'medium', 'hard', 'expert'],
+        label: 'Scalar or Vector Answer',
+        description: 'Student answer for scalar vs vector question',
+        placeholder: '???',
+        correctAnswer: 'vector',
+        options: ['scalar', 'vector'],
+        color: '#8E90F5',
+    },
+    answerWhyDirection: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Why Direction Matters',
+        description: 'Student answer for why direction matters',
+        placeholder: '???',
+        correctAnswer: 'where you end up',
+        options: ['how fast you go', 'where you end up', 'how long it takes'],
+        color: '#8E90F5',
     },
 
     // ─────────────────────────────────────────
-    // BOOLEAN - Toggle switch
+    // SECTION 2: Representing Vectors
     // ─────────────────────────────────────────
-    showHints: {
-        defaultValue: true,
-        type: 'boolean',
-        label: 'Show Hints',
-        description: 'Toggle to show or hide hints',
+    vectorComponentX: {
+        defaultValue: 3,
+        type: 'number',
+        label: 'X Component',
+        description: 'The horizontal component of the vector',
+        min: -5,
+        max: 5,
+        step: 0.5,
+        color: '#62D0AD',
+    },
+    vectorComponentY: {
+        defaultValue: 4,
+        type: 'number',
+        label: 'Y Component',
+        description: 'The vertical component of the vector',
+        min: -5,
+        max: 5,
+        step: 0.5,
+        color: '#8E90F5',
+    },
+    representationHighlight: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Representation Highlight',
+        description: 'Active highlight for vector representation',
     },
 
     // ─────────────────────────────────────────
-    // ARRAY - List of numbers
+    // SECTION 2: Assessment Questions
     // ─────────────────────────────────────────
-    dataPoints: {
-        defaultValue: [1, 4, 9, 16, 25],
-        type: 'array',
-        label: 'Data Points',
-        description: 'Y-values for plotting a graph',
+    answerMagnitude: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Magnitude Answer',
+        description: 'Student answer for magnitude calculation',
+        placeholder: '???',
+        correctAnswer: '5',
+        color: '#AC8BF9',
+    },
+    answerComponentForm: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Component Form Answer',
+        description: 'Student answer for component form',
+        placeholder: '???',
+        correctAnswer: '⟨2, 3⟩',
+        options: ['⟨3, 2⟩', '⟨2, 3⟩', '(2, 3)', '2 + 3'],
+        color: '#AC8BF9',
     },
 
     // ─────────────────────────────────────────
-    // OBJECT - Complex structured data
+    // SECTION 3: Vector Addition
     // ─────────────────────────────────────────
-    graphSettings: {
-        defaultValue: { 
-            xMin: -10, 
-            xMax: 10, 
-            showGrid: true 
-        },
-        type: 'object',
-        label: 'Graph Settings',
-        description: 'Configuration for the graph display',
-        schema: '{ xMin: number, xMax: number, showGrid: boolean }',
+    vectorAx: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Vector A - X',
+        description: 'X component of vector A',
+        min: -4,
+        max: 4,
+        step: 0.5,
+        color: '#62D0AD',
     },
-    */
+    vectorAy: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Vector A - Y',
+        description: 'Y component of vector A',
+        min: -4,
+        max: 4,
+        step: 0.5,
+        color: '#62D0AD',
+    },
+    vectorBx: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Vector B - X',
+        description: 'X component of vector B',
+        min: -4,
+        max: 4,
+        step: 0.5,
+        color: '#8E90F5',
+    },
+    vectorBy: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Vector B - Y',
+        description: 'Y component of vector B',
+        min: -4,
+        max: 4,
+        step: 0.5,
+        color: '#8E90F5',
+    },
+    additionHighlight: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Addition Highlight',
+        description: 'Active highlight for vector addition',
+    },
+
+    // ─────────────────────────────────────────
+    // SECTION 3: Assessment Questions
+    // ─────────────────────────────────────────
+    answerSumX: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Sum X Component',
+        description: 'Student answer for sum X component',
+        placeholder: '???',
+        correctAnswer: '5',
+        color: '#F8A0CD',
+    },
+    answerSumY: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Sum Y Component',
+        description: 'Student answer for sum Y component',
+        placeholder: '???',
+        correctAnswer: '7',
+        color: '#F8A0CD',
+    },
+
+    // ─────────────────────────────────────────
+    // SECTION 4: Scalar Multiplication
+    // ─────────────────────────────────────────
+    scalarMultiplier: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Scalar Multiplier',
+        description: 'The scalar value to multiply the vector by',
+        min: -3,
+        max: 3,
+        step: 0.5,
+        color: '#F7B23B',
+    },
+    baseVectorX: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Base Vector X',
+        description: 'X component of the base vector',
+        min: -3,
+        max: 3,
+        step: 0.5,
+        color: '#62D0AD',
+    },
+    baseVectorY: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Base Vector Y',
+        description: 'Y component of the base vector',
+        min: -3,
+        max: 3,
+        step: 0.5,
+        color: '#62D0AD',
+    },
+    scalarHighlight: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Scalar Highlight',
+        description: 'Active highlight for scalar multiplication',
+    },
+
+    // ─────────────────────────────────────────
+    // SECTION 4: Assessment Questions
+    // ─────────────────────────────────────────
+    answerScaledX: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Scaled X Answer',
+        description: 'Student answer for scaled X component',
+        placeholder: '???',
+        correctAnswer: '6',
+        color: '#F4A89A',
+    },
+    answerNegativeEffect: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Negative Scalar Effect',
+        description: 'Student answer for negative scalar effect',
+        placeholder: '???',
+        correctAnswer: 'reverses direction',
+        options: ['doubles length', 'reverses direction', 'makes it zero'],
+        color: '#F4A89A',
+    },
 };
 
 /**
